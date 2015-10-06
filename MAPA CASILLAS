@@ -1,0 +1,58 @@
+<?php
+	session_start();
+	include "conexion_servidor.php";
+	if( isset( $_SESSION["user"] ) ){
+		header("Location: index.php");
+	}
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" src="/proyecto_crud/main.css">
+		<link rel="stylesheet" src="/proyecto_crud/custom.css">
+		<!-- Versión compilada y comprimida del CSS de Bootstrap -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<!-- Tema opcional -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+		<!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script>
+		function initialize() {
+		  var myCenter=new google.maps.LatLng(29.079479, -110.95907699999998);		
+		  var myOptions = {
+		    center:myCenter,
+		    zoom:15,
+		    mapTypeId:google.maps.MapTypeId.ROADMAP
+		  };
+		  var map=new google.maps.Map(document.getElementById("mapa"),myOptions);
+		  var marker=new google.maps.Marker({
+			  position:myCenter,
+			  animation:google.maps.Animation.BOUNCE
+		  });
+
+		  marker.setMap(map);
+		  var infowindow = new google.maps.InfoWindow({
+		  	content:"Soy una casilla!"
+		  });
+		  infowindow.open(map,marker);
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+	</head>
+
+	<body>
+		<div class="container-blanco">
+			<div class="" style="text-align:center;">
+				<strong><h1><?php echo 'Pruebas mapa casillas' ?></strong></h1>
+			</div>
+		</div>
+		<div class="jumbotron container">
+			<div>
+				<h3 style="text-align:center;">Cada pin es una casilla</h3>
+			</div>
+			<div id="mapa" style="width:100%;height:380px; margin-top:30px;"></div>
+		</div>
+	</body>
+	
+</html>
